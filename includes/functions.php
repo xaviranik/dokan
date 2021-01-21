@@ -3970,7 +3970,7 @@ function dokan_wp_timezone_string() {
  * @throws Exception
  * @return string|false The date, translated if locale specifies it. False on invalid timestamp input.
  */
-function dokan_format_date( $date, $format = false ) {
+function dokan_format_date( $date = '', $format = false ) {
     // if date is empty, get current datetime timestamp
     if ( empty( $date ) ) {
         $date = dokan_current_datetime()->getTimestamp();
@@ -3982,7 +3982,7 @@ function dokan_format_date( $date, $format = false ) {
     }
 
     // if date is not timestamp, convert it to timestamp
-    if ( ! is_numeric( $date ) ) {
+    if ( ! is_numeric( $date ) && strtotime( $date ) ) {
         $date = dokan_current_datetime()->modify( $date )->getTimestamp();
     }
 
